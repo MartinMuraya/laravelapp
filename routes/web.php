@@ -41,11 +41,22 @@ Route::middleware('auth')->group(function () {
     Route::post('/blogs/{blog}/comments', [CommentController::class, 'store'])->name('comments.store');
 });
 
-// Admin Dashboard + Blog management
-Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/blogs', BlogController::class);
-});
+// Admin Dashboard + Management Routes
+Route::middleware(['auth', 'role:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        // Manage Blogs (CRUD)
+        Route::resource('/blogs', \App\Http\Controllers\Admin\BlogController::class);
+
+        // Manage Users (CRUD + assign admin)
+        Route::resource('/users', \App\Http\Controllers\Admin\UserController::class);
+
+        // Settings Page
+        Route::resource('/settings', \App\Http\Controllers\Admin\SettingController::class);
+    });
 
 // User Dashboard + Blog viewing
 Route::middleware(['auth', 'role:user'])

@@ -63,77 +63,80 @@
 
         <!-- Desktop Links -->
         <div class="hidden md:flex items-center space-x-8 font-medium">
-    <!-- Left Links -->
-    <ul class="flex space-x-6">
-        <li>
-            <a href="{{ route('home') }}"
-               class="{{ request()->routeIs('home') ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 pb-1' :
-                        'text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-b-2 hover:border-indigo-600 pb-1 transition-all duration-200' }}">
-               Home
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('about') }}"
-               class="{{ request()->routeIs('about') ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 pb-1' :
-                        'text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-b-2 hover:border-indigo-600 pb-1 transition-all duration-200' }}">
-               About
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('blogs') }}"
-               class="{{ request()->routeIs('blogs') ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 pb-1' :
-                        'text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-b-2 hover:border-indigo-600 pb-1 transition-all duration-200' }}">
-               Blogs
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('contact') }}"
-               class="{{ request()->routeIs('contact') ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 pb-1' :
-                        'text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-b-2 hover:border-indigo-600 pb-1 transition-all duration-200' }}">
-               Contact
-            </a>
-        </li>
-    </ul>
+            <!-- Left Links -->
+            <ul class="flex space-x-6">
+                <li>
+                    <a href="{{ route('home') }}"
+                       class="{{ request()->routeIs('home') ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 pb-1' :
+                                'text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-b-2 hover:border-indigo-600 pb-1 transition-all duration-200' }}">
+                       Home
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('about') }}"
+                       class="{{ request()->routeIs('about') ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 pb-1' :
+                                'text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-b-2 hover:border-indigo-600 pb-1 transition-all duration-200' }}">
+                       About
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('blogs') }}"
+                       class="{{ request()->routeIs('blogs') ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 pb-1' :
+                                'text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-b-2 hover:border-indigo-600 pb-1 transition-all duration-200' }}">
+                       Blogs
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('contact') }}"
+                       class="{{ request()->routeIs('contact') ? 'text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 pb-1' :
+                                'text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400 hover:border-b-2 hover:border-indigo-600 pb-1 transition-all duration-200' }}">
+                       Contact
+                    </a>
+                </li>
+            </ul>
 
-    <!-- Right Auth Links -->
- <div class="flex items-center space-x-3  ml-10">
-        @auth
-            <div x-data="{ dropdown: false }" class="relative">
-                <button @click="dropdown = !dropdown"
-                    class="flex items-center space-x-1 bg-indigo-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-3 py-1.5 rounded-lg hover:bg-indigo-200 dark:hover:bg-gray-700 transition">
-                    <span>{{ Auth::user()->name }}</span>
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 
-                        111.414 1.414l-4 4a1 1 0 
-                        01-1.414 0l-4-4a1 1 0 
-                        010-1.414z" clip-rule="evenodd"/>
-                    </svg>
-                </button>
-                <div x-show="dropdown" x-cloak @click.away="dropdown=false"
-                    class="absolute mt-2 right-0 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg py-2 z-50">
-                    <a href="{{ route('profile.edit') }}"
-                       class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Profile</a>
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit"
-                            class="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
-                            Logout
+            <!-- Right Auth Links -->
+            <div class="flex items-center space-x-3 ml-10">
+                @auth
+                    <div x-data="{ dropdown: false }" class="relative">
+                        <button @click="dropdown = !dropdown"
+                            class="flex items-center space-x-1 bg-indigo-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-3 py-1.5 rounded-lg hover:bg-indigo-200 dark:hover:bg-gray-700 transition">
+                            <span>{{ Auth::user()->name }}</span>
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 
+                                111.414 1.414l-4 4a1 1 0 
+                                01-1.414 0l-4-4a1 1 0 
+                                010-1.414z" clip-rule="evenodd"/>
+                            </svg>
                         </button>
-                    </form>
-                </div>
+                        <div x-show="dropdown" x-cloak @click.away="dropdown=false"
+                            class="absolute mt-2 right-0 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg py-2 z-50">
+                            <!-- Dynamic Profile link -->
+                            <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('user.dashboard') }}"
+                               class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                               Profile
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                    Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <a href="{{ route('login') }}"
+                       class="px-4 py-1.5 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition font-semibold">
+                        Login
+                    </a>
+                    <a href="{{ route('register') }}"
+                       class="px-4 py-1.5 bg-gray-800 dark:bg-indigo-400 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-indigo-500 transition font-semibold">
+                        Register
+                    </a>
+                @endauth
             </div>
-        @else
-            <a href="{{ route('login') }}"
-               class="px-4 py-1.5 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition font-semibold">
-                Login
-            </a>
-            <a href="{{ route('register') }}"
-               class="px-4 py-1.5 bg-gray-800 dark:bg-indigo-400 text-white rounded-lg hover:bg-gray-700 dark:hover:bg-indigo-500 transition font-semibold">
-                Register
-            </a>
-        @endauth
-    </div>
- </div>
+        </div>
 
         <!-- Theme Toggle and Mobile Menu -->
         <div class="flex items-center space-x-4">
@@ -190,7 +193,7 @@
         @auth
             <li class="pt-4 border-t border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200">
                 <p class="mb-2">{{ Auth::user()->name }}</p>
-                <a href="{{ route('profile.edit') }}"
+                <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('user.dashboard') }}"
                    class="block w-full px-4 py-2 bg-indigo-100 dark:bg-gray-800 rounded-lg text-center hover:bg-indigo-200 dark:hover:bg-gray-700 transition">
                    Profile
                 </a>
