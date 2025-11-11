@@ -55,7 +55,7 @@ class UserController extends Controller
             ->with('success', 'User deleted successfully!');
     }
 
-    // ➕ Optional — Add new user manually
+    // Adding new user manually
     public function create()
     {
         return view('admin.users.create');

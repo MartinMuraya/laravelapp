@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Blogger\BlogController as BloggerBlogController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +27,8 @@ Route::view('/about', 'about')->name('about');
 Route::view('/services', 'services')->name('services');
 Route::get('/blogs', [BlogController::class, 'publicIndex'])->name('blogs'); // ✅ Use publicIndex()
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
-Route::view('/contact', 'contact')->name('contact');
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
 // Dashboard (requires authentication)
 Route::get('/dashboard', function () {
@@ -59,6 +61,9 @@ Route::middleware(['auth', 'role:admin'])
 
         // Settings Page
         Route::resource('/settings', \App\Http\Controllers\Admin\SettingController::class);
+        
+        // messages page
+       Route::get('/messages', [\App\Http\Controllers\Admin\MessageController::class, 'index'])->name('messages.index');
     });
 
 // User Dashboard + Blog viewing

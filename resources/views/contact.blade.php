@@ -8,20 +8,35 @@
       Have questions or feedback? We’d love to hear from you.
     </p>
 
-    <form class="space-y-6">
+    @if(session('success'))
+      <p class="text-green-600 text-center mb-4">{{ session('success') }}</p>
+    @endif
+
+    <form action="{{ route('contact.send') }}" method="POST" class="space-y-6">
+      @csrf
+
       <div>
         <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
-        <input type="text" id="name" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Enter Your Name">
+        <input type="text" id="name" name="name" value="{{ old('name') }}"
+               class="w-full border-gray-300 rounded-lg shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50" 
+               placeholder="Enter Your Name">
+        @error('name') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
       </div>
 
       <div>
         <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-        <input type="email" id="email" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Enter Your Email">
+        <input type="email" id="email" name="email" value="{{ old('email') }}"
+               class="w-full border-gray-300 rounded-lg shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50" 
+               placeholder="Enter Your Email">
+        @error('email') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
       </div>
 
       <div>
         <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-        <textarea id="message" rows="4" class="w-full border-gray-300 rounded-lg shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Your message..."></textarea>
+        <textarea id="message" name="message" rows="4"
+                  class="w-full border-gray-300 rounded-lg shadow-sm focus:border-blue-400 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                  placeholder="Your message...">{{ old('message') }}</textarea>
+        @error('message') <p class="text-red-500 text-sm mt-1">{{ $message }}</p> @enderror
       </div>
 
       <div class="text-center">
