@@ -15,6 +15,7 @@
                         <th class="px-4 py-2">Email</th>
                         <th class="px-4 py-2">Message</th>
                         <th class="px-4 py-2">Received At</th>
+                        <th class="px-4 py-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,8 +23,21 @@
                     <tr class="border-b dark:border-gray-700">
                         <td class="px-4 py-2">{{ $msg->name }}</td>
                         <td class="px-4 py-2">{{ $msg->email }}</td>
-                        <td class="px-4 py-2">{{ $msg->message }}</td>
+                        <td class="px-4 py-2">{{ Str::limit($msg->message, 80, '...') }}</td>
                         <td class="px-4 py-2">{{ $msg->created_at->format('d M Y, H:i') }}</td>
+                        <td class="px-4 py-2 space-x-2">
+    <a href="{{ route('admin.messages.show', $msg->id) }}" class="text-indigo-600 hover:underline">View</a>
+
+    <form action="{{ route('admin.messages.destroy', $msg->id) }}" method="POST" class="inline">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="text-red-600 hover:underline"
+                onclick="return confirm('Are you sure you want to delete this message?')">
+            Delete
+        </button>
+    </form>
+</td>
+
                     </tr>
                     @endforeach
                 </tbody>

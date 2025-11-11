@@ -29,7 +29,8 @@
                   ['route'=>'admin.blogs.index','icon'=>'📝','label'=>'Manage Blogs'],
                   ['route'=>'admin.users.index','icon'=>'👥','label'=>'Manage Users'],
                   ['route'=>'admin.settings.index','icon'=>'⚙️','label'=>'Settings'],
-                   ];
+                  ['route'=>'admin.messages.index','icon'=>'✉️','label'=>'Messages'],
+                  ];
                 @endphp
 
                 @foreach($links as $link)

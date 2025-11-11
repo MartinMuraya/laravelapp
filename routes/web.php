@@ -61,9 +61,13 @@ Route::middleware(['auth', 'role:admin'])
 
         // Settings Page
         Route::resource('/settings', \App\Http\Controllers\Admin\SettingController::class);
-        
+
         // messages page
        Route::get('/messages', [\App\Http\Controllers\Admin\MessageController::class, 'index'])->name('messages.index');
+       Route::get('/messages/{message}', [\App\Http\Controllers\Admin\MessageController::class, 'show'])->name('messages.show');
+       Route::delete('/messages/{message}', [\App\Http\Controllers\Admin\MessageController::class, 'destroy'])->name('messages.destroy');
+
+       Route::resource('/contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'show', 'destroy']);
     });
 
 // User Dashboard + Blog viewing
