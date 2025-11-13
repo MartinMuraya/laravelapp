@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\BlogController as AdminBlogController;
@@ -10,7 +11,9 @@ use App\Http\Controllers\Blogger\BlogController as BloggerBlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PublicBlogController;
-
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CartController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +25,8 @@ use App\Http\Controllers\PublicBlogController;
 // --------------------
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('/about', 'about')->name('about');
-Route::view('/services', 'services')->name('services');
+// Route::view('/services', 'services')->name('services');
+Route::get('/services', [ServicesController::class, 'index'])->name('services');
 
 Route::get('/blogs', [PublicBlogController::class, 'index'])->name('publicblog.index'); // List all blogs
 Route::get('/blogs/{slug}', [PublicBlogController::class, 'show'])->name('publicblog.show'); // Single blog
@@ -30,6 +34,13 @@ Route::get('/blogs/{slug}', [PublicBlogController::class, 'show'])->name('public
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
 
+Route::post('/checkout/mpesa', [PaymentController::class, 'stkPush'])->name('checkout.mpesa');
+
+Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::resource('services', ServiceController::class);
+});
 // --------------------
 // Authenticated Users
 // --------------------

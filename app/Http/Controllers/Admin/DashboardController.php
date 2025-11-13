@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Blog;
 use App\Models\Comment;
+use App\Models\Service;
 
 class DashboardController extends Controller
 {
@@ -15,7 +16,8 @@ class DashboardController extends Controller
         $totalBlogs = Blog::count();
         $totalUsers = User::count();
         $newComments = Comment::where('created_at', '>=', now()->subDays(7))->count();
+        $totalServices = Service::count();
 
-        return view('admin.dashboard', compact('totalBlogs', 'totalUsers', 'newComments'));
+        return view('admin.dashboard', compact('totalBlogs', 'totalUsers', 'newComments', 'totalServices'));
     }
 }

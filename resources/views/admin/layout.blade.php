@@ -28,8 +28,8 @@
                   ['route'=>'admin.dashboard', 'icon'=>'📊','label'=>'Dashboard'],
                   ['route'=>'admin.blogs.index','icon'=>'📝','label'=>'Manage Blogs'],
                   ['route'=>'admin.users.index','icon'=>'👥','label'=>'Manage Users'],
-                  ['route'=>'admin.settings.index','icon'=>'⚙️','label'=>'Settings'],
                   ['route'=>'admin.messages.index','icon'=>'✉️','label'=>'Messages'],
+                   ['route'=>'services.index','icon'=>'🛠️','label'=>'Manage Services'],
                   ];
                 @endphp
 

@@ -18,5 +18,6 @@
         <h2 class="text-lg font-semibold mb-2 text-gray-700 dark:text-gray-200">New Comments (7 days)</h2>
         <p class="text-3xl font-bold text-indigo-600">{{ $newComments }}</p>
     </div>
+    
 </div>
 @endsection
