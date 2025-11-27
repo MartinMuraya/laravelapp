@@ -28,10 +28,10 @@
         <a href="{{ route('publicblog.index') }}" 
            class="bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-md transition">Browse Blogs</a>
 
-        <a href="{{ route('profile.edit') }}" 
+        <!-- <a href="{{ route('profile.edit') }}" 
            class="bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 px-4 py-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 transition">
            Edit Profile
-        </a>
+        </a> -->
     </div>
 </div>
 @endsection

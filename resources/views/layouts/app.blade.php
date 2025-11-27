@@ -164,7 +164,7 @@
             <li><a href="{{ route('home') }}" @click="toggleMenu()" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Home</a></li>
             <li><a href="{{ route('about') }}" @click="toggleMenu()" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">About</a></li>
             <li><a href="{{ route('services') }}" @click="toggleMenu()" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Services</a></li>
-            <li><a href="@guest{{ route('publicblog.index') }}@else{{ route('user.blogs.index') }}@endguest" @click="toggleMenu()" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Blogs</a></li>
+            <li><a href="{{ route('publicblog.index') }}" @click="toggleMenu()" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Blogs</a></li>
             <li><a href="{{ route('contact') }}" @click="toggleMenu()" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition">Contact</a></li>
 
             @auth
