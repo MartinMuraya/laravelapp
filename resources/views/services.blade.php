@@ -14,7 +14,7 @@
     </p>
 
     <!-- Search Bar -->
-    <div class="max-w-md mx-auto mb-12 relative">
+    <!-- <div class="max-w-md mx-auto mb-12 relative">
         <input
             type="text"
             id="serviceSearch"
@@ -25,7 +25,7 @@
         <div class="absolute left-3 top-3 text-gray-400 dark:text-gray-500 pointer-events-none">
             🔍
         </div>
-    </div>
+    </div> -->
 
     <!-- Services Grid -->
     <div id="servicesList" class="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">

@@ -9,18 +9,19 @@ class MessageController extends Controller
 {
     // Show all messages in the admin dashboard
     public function index()
-    {
-        // latest messages first, paginated 10 per page
-        $messages = Contact::latest()->paginate(10);
+{
+    $messages = Contact::with('replies')->latest()->paginate(10);
 
-        return view('admin.messages.index', compact('messages'));
-    }
+    return view('admin.messages.index', compact('messages'));
+}
 
     // Optional: show a single message
     public function show(Contact $message)
-    {
-        return view('admin.messages.show', compact('message'));
-    }
+{
+    $message->load('replies.admin'); // <-- load replies with admin user
+    return view('admin.messages.show', compact('message'));
+}
+
 
     // Optional: delete a message
     public function destroy(Contact $message)

@@ -12,12 +12,12 @@ class ContactReply extends Model
     protected $fillable = ['contact_id', 'admin_id', 'reply'];
 
     public function contact()
-    {
-        return $this->belongsTo(Contact::class);
-    }
+{
+    return $this->belongsTo(\App\Models\Contact::class);
+}
 
     public function admin()
-    {
-        return $this->belongsTo(User::class, 'admin_id');
-    }
+{
+    return $this->belongsTo(\App\Models\User::class, 'admin_id');
+}
 }

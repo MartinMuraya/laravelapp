@@ -47,6 +47,22 @@
         </button>
     </form>
  </div>
+ @if($message->replies->count())
+    <div class="mt-10 bg-white dark:bg-gray-800 p-4 rounded shadow">
+        <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-200">
+            Previous Replies
+        </h3>
+
+        @foreach($message->replies as $reply)
+            <div class="mb-4 p-3 bg-gray-100 dark:bg-gray-700 rounded">
+                <strong class="text-indigo-600">{{ $reply->admin->name }}:</strong>
+                <p class="text-gray-800 dark:text-gray-100 mt-2">{{ $reply->reply }}</p>
+                <small class="text-gray-500">{{ $reply->created_at->diffForHumans() }}</small>
+            </div>
+        @endforeach
+    </div>
+@endif
+
 
     <!-- <div class="mb-4">
         <strong class="text-gray-700 dark:text-gray-200">Received At:</strong>

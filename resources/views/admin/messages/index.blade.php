@@ -15,6 +15,7 @@
                         <th class="px-4 py-2">Email</th>
                         <th class="px-4 py-2">Message</th>
                         <th class="px-4 py-2">Received At</th>
+                        <th class="px-4 py-2">Reply Status</th>
                         <th class="px-4 py-2">Actions</th>
                     </tr>
                 </thead>
@@ -25,7 +26,13 @@
                         <td class="px-4 py-2">{{ $msg->email }}</td>
                         <td class="px-4 py-2">{{ Str::limit($msg->message, 80, '...') }}</td>
                         <td class="px-4 py-2">{{ $msg->created_at->format('d M Y, H:i') }}</td>
-                        
+                         <td class="px-4 py-2">
+            @if($msg->replies && $msg->replies->count())
+                <span class="text-green-600 font-semibold">Replied</span>
+            @else
+                <span class="text-red-600 font-semibold">Pending</span>
+            @endif
+        </td>
                         <td class="px-4 py-2 space-x-2">
 
     {{-- View Message --}}
