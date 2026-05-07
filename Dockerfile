@@ -24,5 +24,5 @@ RUN sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:\${PORT}>/g" /etc/apache2/site
 
 EXPOSE 80
 
-# Final runtime fix for MPM conflict and starting Apache
-CMD ["sh", "-c", "a2dismod mpm_event mpm_worker || true && a2enmod mpm_prefork || true && apache2-foreground"]
+# Final runtime fix for MPM conflict, running migrations, and starting Apache
+CMD ["sh", "-c", "php artisan migrate --force && a2dismod mpm_event mpm_worker || true && a2enmod mpm_prefork || true && apache2-foreground"]
