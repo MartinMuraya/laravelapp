@@ -1,6 +1,6 @@
 FROM php:8.2-apache-bookworm
 
-RUN apt-get update && apt-get install -y     git curl libpng-dev libjpeg-dev libfreetype6-dev zip unzip &&     docker-php-ext-configure gd --with-freetype --with-jpeg &&     docker-php-ext-install gd pdo pdo_mysql
+RUN apt-get update && apt-get install -y     git curl libpng-dev libjpeg-dev libfreetype6-dev zip unzip nodejs npm &&     docker-php-ext-configure gd --with-freetype --with-jpeg &&     docker-php-ext-install gd pdo pdo_mysql
 
 # Enable rewrite module
 RUN a2enmod rewrite
@@ -10,6 +10,9 @@ COPY . .
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 RUN composer install --no-dev --optimize-autoloader
+
+# Build assets with NPM
+RUN npm install && npm run build
 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
@@ -24,5 +27,5 @@ RUN sed -i "s/<VirtualHost \*:80>/<VirtualHost \*:\${PORT}>/g" /etc/apache2/site
 
 EXPOSE 80
 
-# Final runtime fix for MPM conflict, running migrations, and starting Apache
-CMD ["sh", "-c", "php artisan migrate --force && a2dismod mpm_event mpm_worker || true && a2enmod mpm_prefork || true && apache2-foreground"]
+# Final runtime fix: run migrations (continue on fail) and start Apache
+CMD ["sh", "-c", "php artisan migrate --force || true && a2dismod mpm_event mpm_worker || true && a2enmod mpm_prefork || true && apache2-foreground"]
